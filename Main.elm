@@ -7,16 +7,12 @@ import Models exposing (Model, initialModel)
 import Update exposing (update)
 import View exposing (view)
 
-
 init : ( Model, Cmd Message )
 init = ( initialModel, fetchTrack )
-
 
 subscriptions : Model -> Sub Message
 subscriptions model =
     Sub.none
-
--- MAIN
 
 main : Program Never Model Message
 main =
