@@ -1,0 +1,3 @@
+var _user$project$Messages$OnFetchTrack = function (a) {
+	return {ctor: 'OnFetchTrack', _0: a};
+};
