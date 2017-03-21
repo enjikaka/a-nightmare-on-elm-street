@@ -2,7 +2,7 @@ module Main exposing (..)
 
 import Messages exposing (Message)
 import Models exposing (Model, initialModel)
-import Update exposing (update)
+import Update exposing (update, updateTrackData)
 import View exposing (view)
 import Navigation exposing (Location)
 import Routing
@@ -10,10 +10,9 @@ import Routing
 init : Location -> ( Model, Cmd Message )
 init location =
   let
-    currentRoute =
-      Routing.parseLocation location
+    currentRoute = Routing.parseLocation location
   in
-    ( initialModel currentRoute, Cmd.none )
+    ( initialModel currentRoute, updateTrackData currentRoute )
 
 subscriptions : Model -> Sub Message
 subscriptions model =

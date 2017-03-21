@@ -1,7 +1,8 @@
 module Update exposing (..)
 
+import Commands exposing (fetchTrack)
 import Messages exposing (Message)
-import Models exposing (Model)
+import Models exposing (Model, Route)
 import Routing exposing (parseLocation)
 
 
@@ -14,4 +15,12 @@ update msg model =
           let
             newRoute = parseLocation location
           in
-            ({ model | route = newRoute }, Cmd.none)
+            ({ model | route = newRoute }, updateTrackData newRoute)
+
+updateTrackData : Route -> Cmd Message
+updateTrackData newRoute =
+  case newRoute of
+    Models.TrackRoute tidalId ->
+      fetchTrack tidalId
+    Models.NotFoundRoute ->
+      Cmd.none
