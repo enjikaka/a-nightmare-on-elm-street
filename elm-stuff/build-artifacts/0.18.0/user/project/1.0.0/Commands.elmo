@@ -31,9 +31,14 @@ var _user$project$Commands$trackDecoder = A3(
 								'id',
 								_elm_lang$core$Json_Decode$string,
 								_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$Models$ActualTrack)))))))));
-var _user$project$Commands$fetchTrackUrl = 'https://api.saoirse.audio/track/tidal/22897962';
-var _user$project$Commands$fetchTrack = A2(
-	_elm_lang$core$Platform_Cmd$map,
-	_user$project$Messages$OnFetchTrack,
-	_krisajenkins$remotedata$RemoteData$sendRequest(
-		A2(_elm_lang$http$Http$get, _user$project$Commands$fetchTrackUrl, _user$project$Commands$trackDecoder)));
+var _user$project$Commands$fetchTrackUrl = function (tidalId) {
+	return A2(_elm_lang$core$Basics_ops['++'], 'https://api.saoirse.audio/track/tidal/', tidalId);
+};
+var _user$project$Commands$fetchTrack = function (tidalId) {
+	var url = _user$project$Commands$fetchTrackUrl(tidalId);
+	return A2(
+		_elm_lang$core$Platform_Cmd$map,
+		_user$project$Messages$OnFetchTrack,
+		_krisajenkins$remotedata$RemoteData$sendRequest(
+			A2(_elm_lang$http$Http$get, url, _user$project$Commands$trackDecoder)));
+};

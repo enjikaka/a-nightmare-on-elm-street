@@ -1,3 +1,6 @@
+var _user$project$Messages$OnLocationChange = function (a) {
+	return {ctor: 'OnLocationChange', _0: a};
+};
 var _user$project$Messages$OnFetchTrack = function (a) {
 	return {ctor: 'OnFetchTrack', _0: a};
 };

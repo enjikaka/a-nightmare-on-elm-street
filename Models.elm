@@ -4,11 +4,13 @@ import RemoteData exposing (WebData)
 
 type alias Model =
   { track : WebData (ActualTrack)
+  , route : Route
   }
 
-initialModel : Model
-initialModel =
+initialModel : Route -> Model
+initialModel route  =
   { track = RemoteData.Loading
+  , route = route
   }
 
 type alias ActualTrack = {
@@ -21,3 +23,10 @@ type alias ActualTrack = {
   itunes_id: String,
   isrc_id: String
 }
+
+type alias TidalId = String
+
+type Route
+  = TrackRoute TidalId
+  | NotFoundRoute
+

@@ -1,8 +1,15 @@
-var _user$project$Models$initialModel = {track: _krisajenkins$remotedata$RemoteData$Loading};
-var _user$project$Models$Model = function (a) {
-	return {track: a};
+var _user$project$Models$initialModel = function (route) {
+	return {track: _krisajenkins$remotedata$RemoteData$Loading, route: route};
 };
+var _user$project$Models$Model = F2(
+	function (a, b) {
+		return {track: a, route: b};
+	});
 var _user$project$Models$ActualTrack = F8(
 	function (a, b, c, d, e, f, g, h) {
 		return {id: a, name: b, artist: c, spotify_id: d, tidal_id: e, deezer_id: f, itunes_id: g, isrc_id: h};
 	});
+var _user$project$Models$NotFoundRoute = {ctor: 'NotFoundRoute'};
+var _user$project$Models$TrackRoute = function (a) {
+	return {ctor: 'TrackRoute', _0: a};
+};

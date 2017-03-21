@@ -4,18 +4,21 @@ import Http
 import Json.Decode
 import Json.Decode.Pipeline exposing (decode, required)
 import Messages exposing (Message)
-import Models exposing (ActualTrack)
+import Models exposing (ActualTrack, TidalId)
 import RemoteData
 
-fetchTrack : Cmd Message
-fetchTrack =
-  Http.get fetchTrackUrl trackDecoder
-    |> RemoteData.sendRequest
-    |> Cmd.map Messages.OnFetchTrack
+fetchTrack : TidalId -> Cmd Message
+fetchTrack tidalId =
+  let
+    url = fetchTrackUrl tidalId
+  in
+    Http.get url trackDecoder
+      |> RemoteData.sendRequest
+      |> Cmd.map Messages.OnFetchTrack
 
-fetchTrackUrl : String
-fetchTrackUrl =
-    "https://api.saoirse.audio/track/tidal/22897962"
+fetchTrackUrl : TidalId -> String
+fetchTrackUrl tidalId =
+    "https://api.saoirse.audio/track/tidal/" ++ tidalId
 
 trackDecoder : Json.Decode.Decoder ActualTrack
 trackDecoder =
